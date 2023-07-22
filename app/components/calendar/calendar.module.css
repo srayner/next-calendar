@@ -1,14 +1,15 @@
 .calendar {
-    width: 240px;
-    height: 240px;
-    background-color: cornsilk;
+    width: 182px;
+    height: 207px;
+    padding: 5px;
+    font-weight: 500;
 }
 
 .title {
-    background-color: yellow;
     display: flex;
     font-size: 14px;
     user-select: none;
+    margin-bottom: 5px;
 }
 
 .monthName {
@@ -24,6 +25,12 @@
     cursor: pointer;
 }
 
+.weekdayGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 26px);
+    gap: 0;
+}
+
 .dayGrid {
     display: grid;
     grid-template-columns: repeat(7, 26px);
@@ -31,42 +38,49 @@
     gap: 0;
 }
 
-.day, .weekDay {
+.dayContainer, .weekdayContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+}
+
+.day, .weekDay {
+    width: 22px;
+    height:22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 1px;
     grid-column: span 1;
     font-size: 12px;
-    color: #bbb;
+    color: var(--textMuted);
     user-select: none;
-    margin: 1px;
-}
-
-.day {
-    cursor: pointer;
 }
 
 .weekDay {
-    color: #000;
+    color: var(--textNeutral);
 }
 
 .day.currentMonth {
-    color: #000;
+    color: var(--textNeutral);
 }
 
 .day.today {
-    background-color: blue;
+    background-color: var(--backgroundPrimary);
+    border-radius: 50%;
+    color: var(--backgroundNeutral);
+}
+
+.dayContainer:hover {
+    cursor: pointer;
+}
+
+.dayContainer:hover .day {
+    background-color: var(--backgroundNeutralHover);
     border-radius: 50%;
 }
 
-.day.today:hover {
-    background-color: darkblue;
+.dayContainer:hover .day.today {
+    background-color: var(--backgroundPrimaryHover);
     border-radius: 50%;
-}
-
-.day:hover {
-  background-color: skyblue;
-  border-radius: 50%;
 }

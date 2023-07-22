@@ -38,30 +38,41 @@ const Calendar = () => {
 
   return (
     <div className={styles.calendar}>
+
+      {/* Title */}
       <div className={styles.title}>
         <div className={styles.monthName}>{format(month, "MMMM yyyy")}</div>
         <FontAwesomeIcon className={styles.button} icon={faChevronLeft} onClick={prev}/>
         <FontAwesomeIcon className={styles.button} icon={faChevronRight} onClick={next} />
       </div>
-      <div className={styles.dayGrid}>
 
+      {/* Weekdays */}
+      <div className={styles.weekdayGrid}>
         {weekdays.map((weekday, index) => (
-          <div className={styles.weekDay} key={index}>{weekday}</div>
-        ))}
-
-        {days.map((day, index) => (
-          <div
-            className={`
-              ${styles.day}
-              ${isToday(day) ? styles.today : ''}
-              ${isWithinInterval(day, {start: monthStart, end: monthEnd}) ? styles.currentMonth : ''}
-            `}
-            key={index}
-          >
-            {format(day, 'd')}
+          <div className={styles.weekdayContainer}>
+            <div className={styles.weekDay} key={index}>{weekday}</div>
           </div>
         ))}
       </div>
+
+      {/* Days */}
+      <div className={styles.dayGrid}>
+        {days.map((day, index) => (
+          <div className={styles.dayContainer}>
+            <div
+              className={`
+                ${styles.day}
+                ${isToday(day) ? styles.today : ''}
+                ${isWithinInterval(day, {start: monthStart, end: monthEnd}) ? styles.currentMonth : ''}
+              `}
+              key={index}
+            >
+              {format(day, 'd')}
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   )
 }

@@ -1,5 +1,10 @@
 :root {
-  --background: 0, 0, 0;
+  --backgroundNeutral: #fff;
+  --backgroundNeutralHover: #ddd;
+  --backgroundPrimary: #00e;
+  --backgroundPrimaryHover: #33f;
+  --textNeutral: #222;
+  --textMuted: #bbb;
 }
 
 html, body {
@@ -8,5 +13,5 @@ html, body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  background-color: var(--background);
 }
