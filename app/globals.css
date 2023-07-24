@@ -5,6 +5,46 @@
   --backgroundPrimaryHover: #33f;
   --textNeutral: #222;
   --textMuted: #bbb;
+
+  --hue: 220;
+  --size: 1rem;
+  --transitionSpeed: 400ms;
+
+  /* light */
+  --bg--light: var(--hue) 30% 97%;
+  --txt--light: var(--hue) 40% 5%;
+  --accent--light: var(--hue) 55% 50%;
+  --secondary--light: calc(var(--hue) + 190) 30% 57%;
+
+  /* dark */
+  --bg--dark: var(--hue) 20% 7%;
+  --txt--dark: var(--hue) 30% 88%;
+  --accent--dark: var(--hue) 45% 47%;
+  --secondary--dark: calc(var(--hue) + 190) 20% 47%;
+
+  /* defaults*/
+  --bg: var(--bg--light);
+  --txt: var(--txt--light);
+  --accent: var(--accent--light);
+  --secondary: var(--secondary--light);
+  color-scheme: light;
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--bg--dark);
+    --txt: var(--txt--dark);
+    --accent: var(--accent--dark);
+    --secondary: var(--secondary--dark);
+    color-scheme: dark;
+  }
+}
+
+@media (prefers-reduced-motion : reduce) {
+  :root {
+    --transitionSpeed: 100ms;
+  }
 }
 
 html, body {
@@ -13,5 +53,19 @@ html, body {
 }
 
 body {
-  background-color: var(--background);
+  background-color: hsl(var(--bg));
+  color: hsl(var(--txt));
+  margin: 0;
+  padding: 0;
+}
+
+.content-container {
+  display: flex;
+}
+
+.content {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }

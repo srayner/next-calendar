@@ -1,9 +1,8 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import Calendar from './components/calendar/Calendar'
+import YearView from './components/year-view/YearView'
 
 export default function Home() {
+
   return (
-   <Calendar />
+    <YearView />
   )
 }

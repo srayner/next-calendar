@@ -1,0 +1,51 @@
+.button {
+    align-items: center;
+    border: none;
+    border-radius: .2em;
+    box-shadow: 
+      .05em .1em .9em hsl(var(--accent) / .3),
+      0 0 0 -.1em hsl(var(--bg)),
+      0 0 0 -.2em hsl(var(--accent));
+    box-sizing: border-box;
+    background-color: hsl(var(--accent));
+    color: hsl(var(--bg));
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    font-size: var(--size);
+    gap: .5em;
+    justify-content: center;
+    margin: 10px;
+    padding: .4em .8em;
+    transition:
+      box-shadow var(--transitionSpeed) cubic-bezier(0.66, -0.2, 0.27, 1.15),
+      background-color var(--transitionSpeed) cubic-bezier(0.66, -0.2, 0.27, 1.15)
+}
+
+.secondary {
+    --accent: var(--secondary)
+}
+
+.button:where(:active, :hover) {
+    background-color: hsl(var(--accent) / .8);
+    box-shadow: 
+      0 0 0 hsl(var(--accent) / .3),
+      0 0 0 -.1em hsl(var(--bg)),
+      0 0 0 -.2em hsl(var(--accent));
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button:focus-visible {
+    box-shadow: 
+      0 0 0 hsl(var(--accent) / .3),
+      0 0 0 .2em hsl(var(--bg)),
+      0 0 0 .4em hsl(var(--accent) / .5);
+
+}
+
+.button :where(span) {
+    pointer-events: none;
+}

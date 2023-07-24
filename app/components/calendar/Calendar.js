@@ -17,8 +17,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import styles from './calendar.module.css'
 
-const Calendar = () => {
-  const [month, setMonth] = useState(new Date())
+const Calendar = (props) => {
+  const [month, setMonth] = useState(props.startingMonth)
 
   const prev = () => {
     setMonth(subMonths(month, 1)) 
@@ -42,8 +42,8 @@ const Calendar = () => {
       {/* Title */}
       <div className={styles.title}>
         <div className={styles.monthName}>{format(month, "MMMM yyyy")}</div>
-        <FontAwesomeIcon className={styles.button} icon={faChevronLeft} onClick={prev}/>
-        <FontAwesomeIcon className={styles.button} icon={faChevronRight} onClick={next} />
+        {props.showNav && <FontAwesomeIcon className={styles.button} icon={faChevronLeft} onClick={prev} />}
+        {props.showNav && <FontAwesomeIcon className={styles.button} icon={faChevronRight} onClick={next} />}
       </div>
 
       {/* Weekdays */}
