@@ -5,6 +5,7 @@ const DayPage = () => {
         <h1>Week view - coming soon</h1>
       </div>
     );
-  };
+
+  }
   
   export default DayPage;

@@ -5,7 +5,7 @@ const DayPage = () => {
         <h1>Day view - coming soon</h1>
       </div>
     );
-    
-  };
+
+  }
   
   export default DayPage;
