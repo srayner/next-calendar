@@ -7,8 +7,8 @@
   --textMuted: #bbb;
 
   --hue: 220;
-  --size: 1rem;
-  --transitionSpeed: 400ms;
+  --size: .9rem;
+  --transitionSpeed: 300ms;
 
   /* light */
   --bg--light: var(--hue) 30% 97%;

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dump-routes": "node -e \"require('next/dist/next-server/lib/router/routes').default.then(console.log)\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",

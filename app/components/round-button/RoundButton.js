@@ -1,10 +1,9 @@
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './button.module.css';
+import styles from './round-button.module.css';
 import { useRouter } from 'next/navigation';
 
-const Button = (props) => {
-  
+const RoundButton = (props) => {
+    
     const router = useRouter();
 
     const navigate = () => {
@@ -13,17 +12,11 @@ const Button = (props) => {
 
     const onClick = props.href ? navigate : props.onClick;
 
-    let style = `${styles.button}`
-    if (props.type === 'secondary') {
-        style = `${styles.button} ${styles.secondary}`
-    }
-
     return (
-        <button className={style} onClick={onClick}>
-            <span>{props.caption}</span>
+        <button className={styles.roundButton} onClick={onClick}>
             <FontAwesomeIcon icon={props.icon} />
         </button>
     )
 }
 
-export default Button
+export default RoundButton;

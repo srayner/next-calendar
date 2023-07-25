@@ -1,0 +1,7 @@
+.text {
+    margin: 10px 5px;
+    padding: .4em .8em;
+    display: flex;
+    align-items: center;
+    font-size: var(--size);
+}

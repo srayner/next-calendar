@@ -1,11 +1,13 @@
 'use client'
 
-import Calendar from '../calendar/Calendar'
-import styles from './year-view.module.css'
+import Calendar from '../../../../components/calendar/Calendar';
+import styles from './page.module.css';
 
-const YearView = () => {
-  
-  const currentYear = new Date().getFullYear();
+const YearPage = (props) => {
+
+  const { year, month, day } = props.params;
+  const currentDate = new Date(year, month - 1, day);
+  const currentYear = currentDate.getFullYear();
   
   let months = [];
   for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
@@ -22,4 +24,4 @@ const YearView = () => {
 
 }
 
-export default YearView;
+export default YearPage

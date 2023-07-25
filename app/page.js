@@ -1,8 +1,12 @@
-import YearView from './components/year-view/YearView'
+import { redirect } from 'next/navigation';
+import { format } from 'date-fns';
 
-export default function Home() {
+const Home = () => {
 
-  return (
-    <YearView />
-  )
+    const today = new Date();
+    const todayUrl = '/' + format(today, 'yyyy/MM/dd') + '/year'; 
+
+    redirect(todayUrl);
 }
+
+export default Home;

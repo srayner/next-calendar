@@ -1,0 +1,17 @@
+.roundButton {
+    height: 2.5em;
+    width: 2.5em;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 50%;
+    background-color: #bbb;
+    margin: 10px 5px;
+    padding: .4em .8em;
+    cursor: pointer;
+    transition:
+        background-color var(--transitionSpeed) cubic-bezier(0.66, -0.2, 0.27, 1.15)
+}
+
+.roundButton:hover {
+    background-color: #ddd;
+}

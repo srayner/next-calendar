@@ -1,5 +1,4 @@
 .button {
-    align-items: center;
     border: none;
     border-radius: .2em;
     box-shadow: 
@@ -11,11 +10,12 @@
     color: hsl(var(--bg));
     cursor: pointer;
     display: flex;
+    align-items: center;
     font: inherit;
     font-size: var(--size);
     gap: .5em;
     justify-content: center;
-    margin: 10px;
+    margin: 10px 5px;
     padding: .4em .8em;
     transition:
       box-shadow var(--transitionSpeed) cubic-bezier(0.66, -0.2, 0.27, 1.15),

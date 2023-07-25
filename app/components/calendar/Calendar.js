@@ -49,8 +49,8 @@ const Calendar = (props) => {
       {/* Weekdays */}
       <div className={styles.weekdayGrid}>
         {weekdays.map((weekday, index) => (
-          <div className={styles.weekdayContainer}>
-            <div className={styles.weekDay} key={index}>{weekday}</div>
+          <div className={styles.weekdayContainer} key={index}>
+            <div className={styles.weekDay}>{weekday}</div>
           </div>
         ))}
       </div>
@@ -58,7 +58,7 @@ const Calendar = (props) => {
       {/* Days */}
       <div className={styles.dayGrid}>
         {days.map((day, index) => (
-          <div className={styles.dayContainer}>
+          <div className={styles.dayContainer} key={index}>
             <div
               className={`
                 ${styles.day}
