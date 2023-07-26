@@ -1,9 +1,14 @@
-const DayPage = () => {
+'use client'
+
+import WeekDays from '../../../../components/week-days/WeekDays';
+
+const DayPage = (props) => {
+
+    const { year, month, day } = props.params;
+    const currentDate = new Date(year, month - 1, day);
 
     return (
-      <div>
-        <h1>Day view - coming soon</h1>
-      </div>
+        <WeekDays date={currentDate} singleDay/>
     );
 
   }

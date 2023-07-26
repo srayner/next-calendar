@@ -1,0 +1,44 @@
+.weekDays {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.weekDayContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weekDayName {
+    font-size: .8em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+
+}
+
+.weekDay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+}
+
+.weekDay:hover:not(.disableHover) {
+    background-color: var(--backgroundNeutralHover);
+    cursor: pointer;
+}
+
+.weekDay.today {
+    background-color: var(--backgroundPrimary);
+    color: white;
+}
+
+.weekDay.today:hover:not(.disableHover) {
+    background-color: var(--backgroundPrimaryHover);
+    cursor: pointer;
+}
+
