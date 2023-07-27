@@ -29,6 +29,7 @@
   --secondary: var(--secondary--light);
   color-scheme: light;
 
+  --hourRowHeight: 60px;
 }
 
 @media (prefers-color-scheme: dark) {
