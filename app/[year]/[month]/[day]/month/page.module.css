@@ -55,6 +55,17 @@
     color: var(--textNeutral);
 }
 
+.day.today {
+    background-color: var(--backgroundPrimary);
+    border-radius: 50%;
+    color: var(--backgroundNeutral);
+}
+
 .dayContainer:hover .day {
     background-color: var(--backgroundNeutralHover);
+}
+
+.dayContainer:hover .day.today {
+    background-color: var(--backgroundPrimaryHover);
+    border-radius: 50%;
 }
