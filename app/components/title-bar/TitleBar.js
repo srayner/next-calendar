@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '../button/Button';
+import DropDown from '../drop-down/DropDown';
 import RoundButton from '../round-button/RoundButton';
 import Text from '../text/Text';
 import { faCaretDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -22,8 +23,11 @@ import {
 import styles from './title-bar.module.css';
 import { useParams } from 'next/navigation';
 import { useSelectedLayoutSegments } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const TitleBar = (props) => {
+
+    const router = useRouter();
 
     const {year, month, day} = useParams();
     const segments = useSelectedLayoutSegments();
@@ -35,7 +39,7 @@ const TitleBar = (props) => {
     
     const currentDate = new Date(year, month - 1, day);
     const today = new Date();
-    const todayLink = '/' + format(today, 'yyyy/MM/dd') + '/year';
+    const todayLink = '/' + format(today, 'yyyy/MM/dd') + '/' + viewName;
 
     let prevLink;
     let nextLink;
@@ -77,19 +81,24 @@ const TitleBar = (props) => {
             prevLink = format(subDays(currentDate, 1), '/yyyy/MM/dd') + '/day';
             nextLink = format(addDays(currentDate, 1), '/yyyy/MM/dd') + '/day';
             dateText = format(currentDate, 'd MMM yyyy');
+    }
 
+    const handleViewChange = (view) => {
+        router.push(`/${year}/${month}/${day}/${view}`);
     }
 
     return (
         <div className={styles.titleBar}>
-            <div className={styles.title}>Calendar</div>
-            
-            <RoundButton icon={faChevronLeft} href={prevLink}/>
-            <RoundButton icon={faChevronRight} href={nextLink}/>
-            <Text>{dateText}</Text>
-            <Button key="1" type={'primary'} caption="Today" href={todayLink} />
-            <Button key="2" type={'secondary'} caption="Year" icon={faCaretDown} />
-            
+            <div className={styles.leftItems}>
+                <div className={styles.title}>Calendar</div>
+                <Button key="1" type={'primary'} caption="Today" href={todayLink} />
+                <RoundButton icon={faChevronLeft} href={prevLink}/>
+                <RoundButton icon={faChevronRight} href={nextLink}/>
+                <Text>{dateText}</Text>
+            </div>
+            <div className={styles.rightItems}>
+                <DropDown type={'secondary'} selected={viewName} icon={faCaretDown} onSelected={(view) => handleViewChange(view)}/>
+            </div>
         </div>
     )
 }

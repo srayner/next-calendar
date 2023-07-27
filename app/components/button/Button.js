@@ -21,7 +21,7 @@ const Button = (props) => {
     return (
         <button className={style} onClick={onClick}>
             <span>{props.caption}</span>
-            <FontAwesomeIcon icon={props.icon} />
+            {props.icon && <FontAwesomeIcon icon={props.icon} />}
         </button>
     )
 }
