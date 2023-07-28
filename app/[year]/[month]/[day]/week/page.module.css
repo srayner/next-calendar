@@ -1,0 +1,68 @@
+.weekView {
+    width: 100%;
+}
+
+.hours {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 170px);
+    overflow: auto;
+}
+
+.row, .topRow {
+    width: 100%;
+    display: flex;
+}
+
+.hour {
+    height: var(--hourRowHeight);
+    text-align: right;
+    font-size: .6em;
+    position: relative;
+    top: -6px;
+    flex: 0 0 40px;
+    margin-right: 5px;
+}
+
+.topRow .hour {
+    height: 10px;
+}
+
+.hourLine {
+    box-sizing: border-box;
+    height: var(--hourRowHeight);
+    border: none;
+    border-top: 1px solid #ccc;
+    flex: 0 0 10px;
+}
+
+.topRow .hourLine {
+    border: none;
+    height: 10px;
+}
+
+.hourContainer {
+    box-sizing: border-box;
+    height: var(--hourRowHeight);
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-right: none;
+    flex: 1;
+}
+
+.topRow .hourContainer {
+    border-top: none;
+    height: 10px;
+}
+
+.hours .row:last-child .hourContainer {
+    border-bottom: 1px solid #ccc;
+}
+
+.hours .row .hourContainer:last-child {
+    border-right: 1px solid #ccc;
+}
+
+.hours .topRow .hourContainer:last-child {
+    border-right: 1px solid #ccc;
+}

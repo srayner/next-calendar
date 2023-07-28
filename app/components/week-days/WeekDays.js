@@ -14,17 +14,19 @@ const WeekDays = (props) => {
     }
 
     return (
-        <div className={styles.weekDays}>
-            {days.map((day, index) => (
-                <div className={styles.weekDayContainer} key={index} onClick={() => props.onClick(day)}>
-                    <div className={styles.weekDayName}>{format(day, 'EEE')}</div>
-                    <div className={`
-                        ${styles.weekDay}
-                        ${isToday(day) ? styles.today : ''}
-                        ${props.singleDay ? styles.disableHover : ''}
-                    `}>{format(day, 'd')}</div>
-                </div>
-            ))}
+        <div className={styles.container}>
+            <div className={styles.weekDays}>
+                {days.map((day, index) => (
+                    <div className={styles.weekDayContainer} key={index} onClick={() => props.onClick(day)}>
+                        <div className={styles.weekDayName}>{format(day, 'EEE')}</div>
+                        <div className={`
+                            ${styles.weekDay}
+                            ${isToday(day) ? styles.today : ''}
+                            ${props.singleDay ? styles.disableHover : ''}
+                        `}>{format(day, 'd')}</div>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
