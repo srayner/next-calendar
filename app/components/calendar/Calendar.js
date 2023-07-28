@@ -58,7 +58,7 @@ const Calendar = (props) => {
       {/* Days */}
       <div className={styles.dayGrid}>
         {days.map((day, index) => (
-          <div className={styles.dayContainer} key={index}>
+          <div className={styles.dayContainer} key={index} onClick={() => props.onSelect(day)}>
             <div
               className={`
                 ${styles.day}
