@@ -2,6 +2,7 @@
 
 import WeekDays from '../../../../components/week-days/WeekDays';
 import styles from './days.module.css';
+import { format } from 'date-fns';
 import { filterEventsByDate } from '../../../../data/events.js';
 import { populateHours } from '@/src/events';
 
@@ -9,15 +10,18 @@ const DayPage = (props) => {
 
     const { year, month, day } = props.params;
     const currentDate = new Date(year, month - 1, day);
+    const dayName = format(currentDate, 'ddd');
 
     const hours = [];
     for (let i = 0; i < 24; i++) {
-        const name = i.toString().padStart(2, '0') + ':00'; 
-        hours.push({name: name, events: []});
+        const name = i.toString().padStart(2, '0') + ':00';
+        let hour = {name: name};
+        hour[dayName] = {events: []};   
+        hours.push(hour);
     }
 
     const events = filterEventsByDate(currentDate);
-    populateHours(hours, events);
+    populateHours(hours, dayName, events);
     
     return (
         <div className={styles.dayView}>
@@ -34,7 +38,7 @@ const DayPage = (props) => {
                         <div className={styles.hour}>{hour.name}</div>
                         <div className={styles.hourLine}></div>
                         <div className={styles.hourContainer}>
-                            {hour.events.map((event) => (
+                            {hour[dayName].events.map((event) => (
                                 <div
                                     class={styles.event}
                                     style={{

@@ -2,7 +2,7 @@
 
 import WeekDays from '../../../../components/week-days/WeekDays';
 import { useRouter } from 'next/navigation';
-import { format } from 'date-fns';
+import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 import { filterEventsByDate } from '../../../../data/events.js';
 import styles from './page.module.css';
 import { populateHours } from '@/src/events';
@@ -18,16 +18,27 @@ const WeekPage = (props) => {
         router.push(format(day, '/yyyy/MM/dd') + '/day');
     }
 
+    const days = eachDayOfInterval({
+        start: startOfWeek(currentDate, {weekStartsOn: 1}),
+        end: endOfWeek(currentDate, {weekStartsOn: 1})
+    });
+
     const hours = [];
     for (let i = 0; i < 24; i++) {
         const name = i.toString().padStart(2, '0') + ':00'; 
-        hours.push({name: name, events: []});
+        let hour = {name: name};
+        days.map((day) => {
+            const dayName = format(day, 'ddd');
+            hour[dayName] = {events: []};
+        });
+        hours.push(hour);
     }
 
-    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-    const events = filterEventsByDate(currentDate);
-    populateHours(hours, events);
+    days.map((day) => {
+        const events = filterEventsByDate(day);
+        const dayName = format(day, 'ddd');
+        populateHours(hours, dayName, events);
+    });
 
     return (
         <div className={styles.weekView}>
@@ -47,7 +58,7 @@ const WeekPage = (props) => {
                         <div className={styles.hourLine}></div>
                         {days.map((day) => (
                             <div className={styles.hourContainer}>
-                                {hour.events.map((event) => (
+                                {hour[format(day, 'ddd')].events.map((event) => (
                                     <div
                                         class={styles.event}
                                         style={{

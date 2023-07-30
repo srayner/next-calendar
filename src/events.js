@@ -51,12 +51,12 @@ function calculateEventPosition(start, end) {
 /**
  * Add events to the hours array
  */
-export const populateHours = (hours, events) => {
+export const populateHours = (hours, day, events) => {
     events.forEach(event => {
         const start = new Date(event.start);
         const end = new Date(event.end);
         const eventHour = start.getHours();
-        hours[eventHour].events.push({
+        hours[eventHour][day].events.push({
             id: event.id,
             name: event.name,
             position: calculateEventPosition(start, end),
