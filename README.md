@@ -2,6 +2,8 @@
 
 A calendar application created using Next.js
 
+![Week View](./docs/screen-shot.png)
+
 ## Getting Started
 
 First, run the development server:
