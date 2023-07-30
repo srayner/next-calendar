@@ -6,7 +6,7 @@ A calendar application created using Next.js
 
 ## Installation
 
-First cone this repo.
+First clone this repo.
 
 ```bash
 git clone https://github.com/srayner/next-calendar.git
@@ -32,4 +32,4 @@ First, run the development server:
 npm run dev
 ```
 
-Navigate to [http://localhost:3000](http://localhost:3000) with your browser..
+Then navigate to [http://localhost:3000](http://localhost:3000) with your browser..
