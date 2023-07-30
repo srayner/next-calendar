@@ -48,6 +48,7 @@
     border: 1px solid #ccc;
     border-bottom: none;
     flex: 1;
+    position: relative;
 }
 
 .topRow .hourContainer {
@@ -57,4 +58,15 @@
 
 .hours .row:last-child .hourContainer {
     border-bottom: 1px solid #ccc;
+}
+
+.event {
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: .7em;
+    border: none;
+    border-left: 4px solid skyblue;
+    position: absolute;
+    z-index: 10
 }
