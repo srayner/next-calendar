@@ -97,6 +97,7 @@ const TitleBar = (props) => {
     return (
         <div className={styles.titleBar}>
             <div className={styles.leftItems}>
+                <img src="/calendar.png" />
                 <div className={styles.title}>Calendar</div>
                 <Button key="1" type={'primary'} caption="Today" href={todayLink} />
                 <RoundButton icon={faChevronLeft} href={prevLink}/>
