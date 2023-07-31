@@ -63,6 +63,7 @@ const WeekPage = (props) => {
                                         class={styles.event}
                                         style={{
                                             height: event.position.height,
+                                            top: event.position.top,
                                             left: event.position.left,
                                             right: event.position.right,
                                             paddingTop: event.position.height <= 15 ? 0 : '4px',
