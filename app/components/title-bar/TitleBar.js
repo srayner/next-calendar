@@ -87,6 +87,13 @@ const TitleBar = (props) => {
         router.push(`/${year}/${month}/${day}/${view}`);
     }
 
+    const items = [
+        { caption: 'Year', shortcut: 'Y', value: 'year'},
+        { caption: 'Month', shortcut: 'M', value: 'month' },
+        { caption: 'Week', shortcut: 'W', value: 'week' },
+        { caption: 'Day', shortcut: 'D', value: 'day' }
+    ];
+
     return (
         <div className={styles.titleBar}>
             <div className={styles.leftItems}>
@@ -97,7 +104,14 @@ const TitleBar = (props) => {
                 <Text>{dateText}</Text>
             </div>
             <div className={styles.rightItems}>
-                <DropDown type={'secondary'} selected={viewName} icon={faCaretDown} onSelected={(view) => handleViewChange(view)}/>
+                <DropDown
+                    type={'secondary'}
+                    items={items}
+                    selected={viewName}
+                    icon={faCaretDown}
+                    menuAligned="right"
+                    onSelected={(view) => handleViewChange(view)}
+                />
             </div>
         </div>
     )

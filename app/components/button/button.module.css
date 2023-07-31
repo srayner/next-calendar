@@ -15,8 +15,9 @@
     font-size: var(--size);
     gap: .5em;
     justify-content: center;
-    margin: 10px 5px;
+    margin: 0;
     padding: .4em .8em;
+    height: auto;
     transition:
       box-shadow var(--transitionSpeed) cubic-bezier(0.66, -0.2, 0.27, 1.15),
       background-color var(--transitionSpeed) cubic-bezier(0.66, -0.2, 0.27, 1.15)

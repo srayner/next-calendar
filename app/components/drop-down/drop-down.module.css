@@ -8,15 +8,23 @@
     padding: 10px 0;
     margin: 0;
     position: absolute;
-    top: 45px;
-    right: 3px;
+    top: 32px;
     width: 150px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: none; /*1px solid #ccc;*/
     background-color: white;
     overflow: hidden;
     list-style: none;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 4px 0px;
     z-index: 99;
+}
+
+.leftAligned {
+    left: 0;
+}
+
+.rightAligned {
+    right: 0;
 }
 
 .list li {

@@ -7,14 +7,13 @@ import styles from './drop-down.module.css';
 const DropDown = (props) => {
 
     const [dropped, setDropped] = useState(false);
-    const items = [
-        { caption: 'Year', shortcut: 'Y', value: 'year'},
-        { caption: 'Month', shortcut: 'M', value: 'month' },
-        { caption: 'Week', shortcut: 'W', value: 'week' },
-        { caption: 'Day', shortcut: 'D', value: 'day' }
-    ];
-    const selected = items.find(item => item.value === props.selected);
     
+    const items = props.items;
+    const selected = items.find(item => item.value === props.selected);
+    const menuAligned = props.menuAligned || 'left';
+    const menuAlignmentStyle = menuAligned === 'left' ? styles.leftAligned : styles.rightAligned;
+    console.log(menuAligned);
+    console.log(menuAlignmentStyle);
 
     const toggleDropped = () => {
         setDropped(!dropped);
@@ -29,8 +28,8 @@ const DropDown = (props) => {
 
     return (
         <div className={styles.container}>
-            <Button type={props.type} caption={selected.caption} icon={props.icon} onClick={toggleDropped}/>
-            {dropped && <ul className={styles.list}>
+            <Button type={props.type} caption={props.caption || selected.caption} icon={props.icon} onClick={toggleDropped}/>
+            {dropped && <ul className={`${styles.list} ${menuAlignmentStyle}`}>
                 {items.map((item) => <li key={item.value} onClick={() => handleSelected(item)}>
                     <span>{item.caption}</span>
                     <span>{item.shortcut}</span>

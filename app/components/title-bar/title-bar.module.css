@@ -2,17 +2,20 @@
     border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
+    padding: 10px;
 }
 
 .leftItems {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 5px;
 }
   
 .rightItems {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 5px;
 }
 

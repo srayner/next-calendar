@@ -5,6 +5,8 @@ import styles from './side-bar.module.css'
 import { useSelectedLayoutSegments } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
+import DropDown from '../drop-down/DropDown';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 const SideBar = () => {
 
@@ -20,8 +22,21 @@ const SideBar = () => {
         router.push(url);
     }
 
+    const items = [
+        { caption: 'Event', shortcut: 'E', value: 'event'},
+        { caption: 'Task', shortcut: 'T', value: 'task'}
+    ];
+
     return (
         <div className={styles.sideBar}>
+            <DropDown
+                type={'primary'}
+                items={items}
+                caption="Create"
+                icon={faCaretDown}
+                menuAligned="left"
+                onSelected={(view) => handleViewChange(view)}
+                />
             <Calendar startingMonth={now} onSelect={handleDateChange} showNav/>
         </div>
     )
