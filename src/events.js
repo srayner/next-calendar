@@ -1,5 +1,5 @@
 
-import { differenceInMinutes, startOfDay } from "date-fns";
+import { differenceInMinutes, getMinutes, startOfDay } from "date-fns";
 
 function getTextColorForBackground(bgColor) {
 
@@ -38,12 +38,15 @@ function calculateEventPosition(start, end) {
     let height = Math.ceil(durationInMinutes / 15) * 15;
   
     // Calculate the top position in minutes from the start of the day
-    const top = differenceInMinutes(start, startOfDay(start));
+    let top = differenceInMinutes(start, startOfDay(start));
   
     // Ensure the height does not exceed the maximum allowed height (1440 minutes)
     if (height + top > 1440) {
       height = 1440 - top;
     }
+
+    // Top relative to hour container
+    top = getMinutes(start);
 
     return { height: height - 1, top, left: 0, right: 0 };
 }
