@@ -7,10 +7,13 @@ import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 import DropDown from '../drop-down/DropDown';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { ModalContext } from '@/app/layout';
+import { useContext } from 'react';
 
 const SideBar = () => {
 
     const router = useRouter();
+    const { openModal } = useContext(ModalContext);
 
     const now = new Date();
 
@@ -20,6 +23,10 @@ const SideBar = () => {
     const handleDateChange = (date) => {
         const url = '/' + format(date, 'yyyy/MM/dd') + '/' + viewName;
         router.push(url);
+    }
+
+    const handleCreate = (type) => {
+        openModal(type);
     }
 
     const items = [
@@ -35,7 +42,7 @@ const SideBar = () => {
                 caption="Create"
                 icon={faCaretDown}
                 menuAligned="left"
-                onSelected={(view) => handleViewChange(view)}
+                onSelected={(data) => handleCreate(data)}
                 />
             <Calendar startingMonth={now} onSelect={handleDateChange} showNav/>
         </div>

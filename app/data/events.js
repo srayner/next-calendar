@@ -7,6 +7,13 @@ const events = [
         "colour": "#4287f5"
     },
     {
+        "id": 1,
+        "name": "Another event",
+        "start": "2023-07-24 06:45:00",
+        "end": "2023-07-24 07:00:00",
+        "colour": "#c242f5"
+    },
+    {
         "id": 2,
         "name": "Second event",
         "start": "2023-07-30 08:15:00",
