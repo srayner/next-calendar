@@ -80,7 +80,7 @@ const TitleBar = (props) => {
         default:
             prevLink = format(subDays(currentDate, 1), '/yyyy/MM/dd') + '/day';
             nextLink = format(addDays(currentDate, 1), '/yyyy/MM/dd') + '/day';
-            dateText = format(currentDate, 'd MMM yyyy');
+            dateText = format(currentDate, 'd MMMM yyyy');
     }
 
     const handleViewChange = (view) => {
