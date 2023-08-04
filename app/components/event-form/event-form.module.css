@@ -1,0 +1,57 @@
+.eventForm {
+
+}
+
+.eventName {
+    outline: none;
+    box-sizing: border-box;
+    border: none;
+    border-radius: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    font-size: 24px;
+    line-height: 24px;
+    font-family: inherit;
+    margin-bottom: 20px;
+}
+
+.period {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: auto;
+}
+
+/* Hide the default radio button */
+input.radio[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Style the custom button appearance */
+  .radioButtons label {
+    display: inline-block;
+    background-color: D2E3FC;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 5px;
+  }
+
+  .radioButtons span {
+    padding: 10px;
+  }
+  
+  /* Add styles for the selected radio button */
+  .radioButtons input[type="radio"]:checked + span {
+    padding: 10px;
+    background-color: #D2E3FC;
+    color: #fff;
+  }
+
+.eventName:focus {
+    border-bottom: 2px solid #1967D2;
+}
+

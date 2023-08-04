@@ -17,8 +17,8 @@ export default function RootLayout({ children }) {
     
     const [modalState, setModalState] = useState({isOpen: false});
 
-    function openModal(type) {
-        setModalState({...modalState, isOpen: true, type});
+    function openModal(event) {
+        setModalState({...modalState, isOpen: true, event});
     }
 
     function closeModal() {
@@ -28,7 +28,8 @@ export default function RootLayout({ children }) {
     const context = {
         isOpen: modalState.isOpen,
         openModal,
-        closeModal
+        closeModal,
+        event: modalState.event
     }
 
     return (

@@ -1,0 +1,11 @@
+.button {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #eee;
+}

@@ -26,7 +26,13 @@ const SideBar = () => {
     }
 
     const handleCreate = (type) => {
-        openModal(type);
+        const newEvent = {
+            type,
+            start: new Date(),
+            end: new Date(),
+            colour: '#4287f5'
+        }
+        openModal(newEvent);
     }
 
     const items = [

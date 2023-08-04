@@ -1,0 +1,19 @@
+.button {
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #eee;
+}
+
+.circle {
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-color: lightgray;
+}

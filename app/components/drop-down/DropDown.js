@@ -12,8 +12,6 @@ const DropDown = (props) => {
     const selected = items.find(item => item.value === props.selected);
     const menuAligned = props.menuAligned || 'left';
     const menuAlignmentStyle = menuAligned === 'left' ? styles.leftAligned : styles.rightAligned;
-    console.log(menuAligned);
-    console.log(menuAlignmentStyle);
 
     const toggleDropped = () => {
         setDropped(!dropped);
