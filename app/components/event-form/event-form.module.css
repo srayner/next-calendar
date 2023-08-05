@@ -1,5 +1,9 @@
 .eventForm {
+  min-height: 230px;
+}
 
+.eventNameContainer {
+    margin: 0 0 0 50px;
 }
 
 .eventName {
@@ -10,16 +14,10 @@
     border-bottom: 1px solid #ccc;
     width: 100%;
     font-size: 24px;
+    color: var(--textNeutral);
     line-height: 24px;
     font-family: inherit;
     margin-bottom: 20px;
-}
-
-.period {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  height: auto;
 }
 
 /* Hide the default radio button */

@@ -4,6 +4,7 @@ import styles from "./modal.module.css";
 import { useContext } from 'react';
 import { ModalContext } from "@/app/layout";
 import EventForm from '../event-form/EventForm';
+import Button from "../button/Button";
 
 const Modal = () => {
     const {isOpen, closeModal, event} = useContext(ModalContext);
@@ -24,7 +25,11 @@ const Modal = () => {
                 <div className={styles.contentContainer}>
                     <EventForm event={event} saveEvent={onSave} />
                 </div>
+                <div className={styles.actions}>
+                    <Button caption="Save"></Button>
+                </div>
             </div>
+            
         </div>
     );
 };

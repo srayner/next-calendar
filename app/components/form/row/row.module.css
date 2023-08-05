@@ -8,6 +8,7 @@
 .icon {
     display: flex;
     justify-content: center;
+    color: var(--textNeutral);
     width: 40px;
 }
 

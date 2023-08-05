@@ -30,7 +30,7 @@ const SideBar = () => {
             type,
             start: new Date(),
             end: new Date(),
-            colour: '#4287f5'
+            colour: '#039be5'
         }
         openModal(newEvent);
     }

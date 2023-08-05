@@ -1,6 +1,7 @@
 .button {
     font-family: inherit;
     font-size: 14px;
+    color: var(--textNeutral);
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;

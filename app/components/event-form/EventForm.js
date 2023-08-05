@@ -30,7 +30,7 @@ const EventForm = ({event, saveEvent}) => {
 
     return (
         <form className={styles.eventForm} onSubmit={handleSave} autoComplete="off">
-            <div className={styles.formControl}>
+            <div className={styles.eventNameContainer}>
                 <input
                   autoFocus
                   className={styles.eventName}
@@ -50,11 +50,6 @@ const EventForm = ({event, saveEvent}) => {
 
             <Row icon={faSwatchbook}>
                 <ColourInput value={data.colour} />
-            </Row>
-
-
-            <Row>
-                <Button caption="Submit"/>
             </Row>
         </form>
     );

@@ -1,9 +1,18 @@
+.container {
+    position: relative;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
 .button {
     display: flex;
     gap: 10px;
     justify-content: start;
     padding: 10px;
     border-radius: 5px;
+    color: var(--textNeutral);
     cursor: pointer;
 }
 
@@ -12,8 +21,51 @@
 }
 
 .circle {
-    height: 16px;
-    width: 16px;
+    height: 18px;
+    width: 18px;
     border-radius: 50%;
     background-color: lightgray;
+    font-size: 13px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 66px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 4px 0px;
+    z-index: 99;
+}
+
+.tooltip {
+    display: none;
+    position: relative;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 3px;
+    color: white;
+    padding: 5px;
+    font-family: inherit;
+    font-size: 13px;
+    width: fit-content;
+}
+
+.circle:hover .tooltip {
+    display: block;
+    text-align: center;
 }
