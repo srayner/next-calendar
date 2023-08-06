@@ -47,8 +47,8 @@ const WeekPage = (props) => {
                 <div className={styles.topRow} key="-1">
                     <div className={styles.hour}></div>
                     <div className={styles.hourLine}></div>
-                    {days.map((day) => (
-                        <div className={styles.hourContainer}></div>
+                    {days.map((day, index) => (
+                        <div className={styles.hourContainer} key={index}></div>
                     ))}
                 </div>
 
