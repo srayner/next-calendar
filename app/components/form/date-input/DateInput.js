@@ -24,7 +24,7 @@ const DateInput = ({value}) => {
     const caption = format(date, 'EEEE, dd MMMM');
 
     return (
-        <button className={styles.container} onBlur={handleBlur}>
+        <button className={styles.container} onBlur={handleBlur} type="button">
             <span className={styles.button} onClick={toggleDropped}>{caption}</span>
             {dropped &&
                 <div className={styles.dropdownContainer}>

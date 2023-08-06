@@ -36,7 +36,7 @@ const ColourInput = ({value}) => {
     ];
 
     return (
-        <button className={styles.container} onBlur={handleBlur}>
+        <button className={styles.container} onBlur={handleBlur} type="button">
             <div className={styles.button} onClick={toggleDropped}>
                 <div className={styles.circle} style={style}></div>
                 <FontAwesomeIcon icon={faCaretDown} />

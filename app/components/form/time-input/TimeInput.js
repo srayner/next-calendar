@@ -31,12 +31,12 @@ const TimeInput = ({value}) => {
     );
 
     return (
-        <button className={styles.container} onBlur={handleBlur}>
+        <button className={styles.container} onBlur={handleBlur} type="button">
             <span className={styles.button} onClick={toggleDropped}>{caption}</span>
             {dropped &&
                 <div className={styles.dropdownContainer}>
-                    {times.map(time => {
-                        return (<div>{format(time, 'hh:mm')}</div>);
+                    {times.map((time, index) => {
+                        return (<div key={index}>{format(time, 'hh:mm')}</div>);
                     })}
                 </div>
             }
