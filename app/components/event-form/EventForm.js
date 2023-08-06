@@ -10,7 +10,6 @@ import { faClock, faSwatchbook } from '@fortawesome/free-solid-svg-icons';
 
 const EventForm = ({event, saveEvent}) => {
 
-    console.log(event);
     const [data, setData] = useState(event);
 
     const handleChange = (e) => {

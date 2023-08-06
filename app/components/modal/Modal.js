@@ -14,6 +14,7 @@ const Modal = () => {
     function onSave(data) {
         console.log(data);
     }
+    
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>

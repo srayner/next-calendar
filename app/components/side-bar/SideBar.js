@@ -25,19 +25,7 @@ const SideBar = () => {
         router.push(url);
     }
 
-    function debug() {
-        const now = new Date();
-        const myTrunc = roundToNearestMinutes(now, {nearestTo: 15, roundingMethod: 'trunc'});
-        const myCeil = roundToNearestMinutes(now, {nearestTo: 15, roundingMethod: 'ceil'});
-        const myFloor = roundToNearestMinutes(now, {nearestTo: 15, roundingMethod: 'floor'});
-
-        console.log(now);
-        console.log(myTrunc);
-        console.log(myCeil);
-        console.log(myFloor);
-    }
     const handleCreate = (type) => {
-        debug();
         const now = new Date();
         const start = roundToNearestMinutes(now, {nearestTo: 15, roundingMethod: 'ceil'});
         const end = addHours(start , 1);
