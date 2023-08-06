@@ -15,7 +15,7 @@ git clone https://github.com/srayner/next-calendar.git
 Then change directory into the installation folder.
 
 ```bash
-cd next-calendar.git
+cd next-calendar
 ```
 
 Finally install the dependencies
