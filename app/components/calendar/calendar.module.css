@@ -7,7 +7,9 @@
 
 .title {
     display: flex;
+    font-family: inherit;
     font-size: 14px;
+    text-align: left;
     user-select: none;
     margin-bottom: 5px;
 }

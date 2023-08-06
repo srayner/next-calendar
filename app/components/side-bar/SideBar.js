@@ -4,7 +4,7 @@ import Calendar from '../calendar/Calendar';
 import styles from './side-bar.module.css'
 import { useSelectedLayoutSegments } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import { format } from 'date-fns';
+import { addHours, format, roundToNearestMinutes, startOfDay } from 'date-fns';
 import DropDown from '../drop-down/DropDown';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { ModalContext } from '@/app/layout';
@@ -25,11 +25,26 @@ const SideBar = () => {
         router.push(url);
     }
 
+    function debug() {
+        const now = new Date();
+        const myTrunc = roundToNearestMinutes(now, {nearestTo: 15, roundingMethod: 'trunc'});
+        const myCeil = roundToNearestMinutes(now, {nearestTo: 15, roundingMethod: 'ceil'});
+        const myFloor = roundToNearestMinutes(now, {nearestTo: 15, roundingMethod: 'floor'});
+
+        console.log(now);
+        console.log(myTrunc);
+        console.log(myCeil);
+        console.log(myFloor);
+    }
     const handleCreate = (type) => {
+        debug();
+        const now = new Date();
+        const start = roundToNearestMinutes(now, {nearestTo: 15, roundingMethod: 'ceil'});
+        const end = addHours(start , 1);
         const newEvent = {
             type,
-            start: new Date(),
-            end: new Date(),
+            start: start,
+            end: end,
             colour: '#039be5'
         }
         openModal(newEvent);
