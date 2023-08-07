@@ -1,6 +1,6 @@
 import { addHours, eachMinuteOfInterval, startOfDay } from 'date-fns';
 import styles from './time-input.module.css';
-import format from 'date-fns/format';
+import {format, isEqual} from 'date-fns';
 import { useState } from 'react';
 
 const TimeInput = ({value}) => {
@@ -21,7 +21,7 @@ const TimeInput = ({value}) => {
         setDropped(false);
     }
 
-    const caption = format(value, 'hh:mm');
+    const caption = format(date, 'HH:mm');
 
     const startTime = startOfDay(date);
     const endTime = addHours(date, 1);
@@ -36,7 +36,20 @@ const TimeInput = ({value}) => {
             {dropped &&
                 <div className={styles.dropdownContainer}>
                     {times.map((time, index) => {
-                        return (<div key={index}>{format(time, 'hh:mm')}</div>);
+                        return (
+                            <div
+                                key={index}
+                                className={styles.listItem}
+                                onClick={e => handleSelect(time)}
+                                ref={(element) => {
+                                    if (isEqual(time, date) && element) {
+                                      element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                                    }
+                                }}
+                            >
+                                {format(time, 'HH:mm')}
+                            </div>
+                        );
                     })}
                 </div>
             }
