@@ -23,7 +23,7 @@
     box-sizing: border-box;
     box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 4px 0px;
     position: absolute;
-    top: 0;
+    top: 38px;
     background-color: white;
     z-index: 99;
 }
