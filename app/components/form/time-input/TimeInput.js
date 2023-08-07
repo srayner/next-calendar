@@ -1,6 +1,5 @@
-import { addHours, eachMinuteOfInterval, startOfDay } from 'date-fns';
+import { addMinutes, eachMinuteOfInterval, format, isEqual, startOfDay } from 'date-fns';
 import styles from './time-input.module.css';
-import {format, isEqual} from 'date-fns';
 import { useState } from 'react';
 
 const TimeInput = ({value}) => {
@@ -24,7 +23,7 @@ const TimeInput = ({value}) => {
     const caption = format(date, 'HH:mm');
 
     const startTime = startOfDay(date);
-    const endTime = addHours(date, 1);
+    const endTime = addMinutes(startTime, 1425);
     const times = eachMinuteOfInterval(
         {start: startTime, end: endTime},
         {step: 15}
