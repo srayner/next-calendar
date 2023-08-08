@@ -5,7 +5,7 @@ import styles from './colour-input.module.css';
 import { faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-const ColourInput = ({value}) => {
+const ColourInput = ({value, onSelect}) => {
 
     const [dropped, setDropped] = useState(false);
 
@@ -15,6 +15,11 @@ const ColourInput = ({value}) => {
 
     function handleBlur() {
         setDropped(false);
+    }
+
+    function handleSelect(value) {
+        setDropped(false);
+        onSelect('colour', value);
     }
 
     const style = {
@@ -43,7 +48,11 @@ const ColourInput = ({value}) => {
             </div>
             {dropped && <div className={styles.list}>
                 {colours.map(colour => {
-                    return <div className={styles.circle} style={{backgroundColor: colour.hex}}>
+                    return <div
+                        className={styles.circle}
+                        style={{backgroundColor: colour.hex}}
+                        onClick={e => handleSelect(colour.hex)}
+                    >
                         {colour.hex === value && <FontAwesomeIcon icon={faCheck} />}
                         <div className={styles.tooltip}>{colour.name}</div>
                     </div>

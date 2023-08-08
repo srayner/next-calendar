@@ -12,8 +12,9 @@ const EventForm = ({event, saveEvent}) => {
 
     const [data, setData] = useState(event);
 
-    const handleChange = (e) => {
-        const {name, value} = e.target;
+    const handleChange = (name, value) => {
+        console.log(name);
+        console.log(value);
         setData((prevData) => ({...prevData, [name]: value}));
     }
 
@@ -48,7 +49,7 @@ const EventForm = ({event, saveEvent}) => {
             </Row>
 
             <Row icon={faSwatchbook}>
-                <ColourInput value={data.colour} />
+                <ColourInput value={data.colour} onSelect={handleChange}/>
             </Row>
         </form>
     );
