@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import styles from './event-form.module.css';
 import { useState } from 'react';
 import Button from '../button/Button';
+import TextInput from '../form/text-input/TextInput';
 import DateInput from '../form/date-input/DateInput';
 import TimeInput from '../form/time-input/TimeInput';
 import Row from '../form/row/Row';
@@ -13,8 +14,6 @@ const EventForm = ({event, saveEvent}) => {
     const [data, setData] = useState(event);
 
     const handleChange = (name, value) => {
-        console.log(name);
-        console.log(value);
         setData((prevData) => ({...prevData, [name]: value}));
     }
 
@@ -30,27 +29,21 @@ const EventForm = ({event, saveEvent}) => {
 
     return (
         <form className={styles.eventForm} onSubmit={handleSave} autoComplete="off">
-            <div className={styles.eventNameContainer}>
-                <input
-                  autoFocus
-                  className={styles.eventName}
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Add title"
-                  onChange={handleChange} />
+            <div className={styles.fieldContainer}>
+                <TextInput name='name' value={data.name} onChange={handleChange} />
+                <Row icon={faClock}>
+                    <DateInput value={data.start} />
+                    <TimeInput value={data.start} />  - 
+                    <TimeInput value={data.end} />
+                    <DateInput value={data.end} />
+                </Row>
+                <Row icon={faSwatchbook}>
+                    <ColourInput value={data.colour} onSelect={handleChange}/>
+                </Row>
             </div>
-
-            <Row icon={faClock}>
-                <DateInput value={data.start} />
-                <TimeInput value={data.start} />  - 
-                <TimeInput value={data.end} />
-                <DateInput value={data.end} />
-            </Row>
-
-            <Row icon={faSwatchbook}>
-                <ColourInput value={data.colour} onSelect={handleChange}/>
-            </Row>
+            <div className={styles.actions}>
+                <Button caption="Save" onClick={handleSave}></Button>
+            </div>
         </form>
     );
 

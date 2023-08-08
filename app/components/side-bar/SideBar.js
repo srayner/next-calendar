@@ -31,6 +31,7 @@ const SideBar = () => {
         const end = addHours(start , 1);
         const newEvent = {
             type,
+            name: '',
             start: start,
             end: end,
             colour: '#039be5'

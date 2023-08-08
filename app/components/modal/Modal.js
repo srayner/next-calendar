@@ -13,6 +13,7 @@ const Modal = () => {
 
     function onSave(data) {
         console.log(data);
+        closeModal();
     }
     
     return (
@@ -25,9 +26,6 @@ const Modal = () => {
                 </div>
                 <div className={styles.contentContainer}>
                     <EventForm event={event} saveEvent={onSave} />
-                </div>
-                <div className={styles.actions}>
-                    <Button caption="Save"></Button>
                 </div>
             </div>
             

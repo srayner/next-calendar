@@ -1,0 +1,21 @@
+.textInput {
+    margin: 0 0 0 50px;
+}
+
+.eventName {
+    outline: none;
+    box-sizing: border-box;
+    border: none;
+    border-radius: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    font-size: 24px;
+    color: var(--textNeutral);
+    line-height: 24px;
+    font-family: inherit;
+    margin-bottom: 20px;
+}
+
+.eventName:focus {
+    border-bottom: 2px solid #1967D2;
+}

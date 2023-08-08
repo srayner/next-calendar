@@ -47,8 +47,9 @@ const ColourInput = ({value, onSelect}) => {
                 <FontAwesomeIcon icon={faCaretDown} />
             </div>
             {dropped && <div className={styles.list}>
-                {colours.map(colour => {
+                {colours.map((colour, index) => {
                     return <div
+                        key={index}
                         className={styles.circle}
                         style={{backgroundColor: colour.hex}}
                         onClick={e => handleSelect(colour.hex)}
