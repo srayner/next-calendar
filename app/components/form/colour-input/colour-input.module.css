@@ -27,6 +27,7 @@
     background-color: lightgray;
     font-size: 13px;
     color: white;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,8 +52,8 @@
 }
 
 .tooltip {
-    display: none;
-    position: relative;
+    visibility: hidden;
+    position: absolute;
     top: -30px;
     left: 50%;
     transform: translateX(-50%);
@@ -63,9 +64,12 @@
     font-family: inherit;
     font-size: 13px;
     width: fit-content;
+    transition: opacity 0.2s ease, transform 0.3s ease;
+    text-align: center;
+    opacity: 0;
 }
 
 .circle:hover .tooltip {
-    display: block;
-    text-align: center;
+    visibility: visible;
+    opacity: 1;
 }
