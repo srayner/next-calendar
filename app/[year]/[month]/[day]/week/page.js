@@ -3,7 +3,7 @@
 import WeekDays from '../../../../components/week-days/WeekDays';
 import { useRouter } from 'next/navigation';
 import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
-import { filterEventsByDate } from '../../../../data/events.js';
+import { filterEventsByDate } from '@/src/local-storage';
 import styles from './page.module.css';
 import { populateHours } from '@/src/events';
 

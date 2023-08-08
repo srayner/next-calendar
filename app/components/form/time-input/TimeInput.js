@@ -2,7 +2,7 @@ import { addMinutes, eachMinuteOfInterval, format, isEqual, startOfDay } from 'd
 import styles from './time-input.module.css';
 import { useState } from 'react';
 
-const TimeInput = ({value}) => {
+const TimeInput = ({name, value, onSelect}) => {
 
     const [date, setDate] = useState(value);
     const [dropped, setDropped] = useState(false);
@@ -18,6 +18,7 @@ const TimeInput = ({value}) => {
     function handleSelect(newDate) {
         setDate(newDate);
         setDropped(false);
+        onSelect(name, newDate);
     }
 
     const caption = format(date, 'HH:mm');

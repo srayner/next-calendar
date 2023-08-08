@@ -4,7 +4,7 @@ import styles from "./modal.module.css";
 import { useContext } from 'react';
 import { ModalContext } from "@/app/layout";
 import EventForm from '../event-form/EventForm';
-import Button from "../button/Button";
+import { saveEvent } from '@/src/local-storage';
 
 const Modal = () => {
     const {isOpen, closeModal, event} = useContext(ModalContext);
@@ -12,7 +12,7 @@ const Modal = () => {
     if (!isOpen) return null;
 
     function onSave(data) {
-        console.log(data);
+        saveEvent(data);
         closeModal();
     }
     

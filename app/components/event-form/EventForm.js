@@ -14,10 +14,12 @@ const EventForm = ({event, saveEvent}) => {
     const [data, setData] = useState(event);
 
     const handleChange = (name, value) => {
+        console.log(name, value);
         setData((prevData) => ({...prevData, [name]: value}));
     }
 
     const handleSave = (e) => {
+        console.log(data);
         e.preventDefault();
         saveEvent(data);
     }
@@ -32,10 +34,10 @@ const EventForm = ({event, saveEvent}) => {
             <div className={styles.fieldContainer}>
                 <TextInput name='name' value={data.name} onChange={handleChange} />
                 <Row icon={faClock}>
-                    <DateInput value={data.start} />
-                    <TimeInput value={data.start} />  - 
-                    <TimeInput value={data.end} />
-                    <DateInput value={data.end} />
+                    <DateInput name="start" value={data.start} onSelect={handleChange}/>
+                    <TimeInput name="start" value={data.start} onSelect={handleChange}/>  - 
+                    <TimeInput name="end" value={data.end} onSelect={handleChange}/>
+                    <DateInput name="end" value={data.end} onSelect={handleChange}/>
                 </Row>
                 <Row icon={faSwatchbook}>
                     <ColourInput value={data.colour} onSelect={handleChange}/>

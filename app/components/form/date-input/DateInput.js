@@ -3,7 +3,7 @@ import format from 'date-fns/format';
 import { useState } from 'react';
 import Calendar from '../../calendar/Calendar';
 
-const DateInput = ({value}) => {
+const DateInput = ({name, value, onSelect}) => {
 
     const [date, setDate] = useState(value);
     const [dropped, setDropped] = useState(false);
@@ -19,6 +19,7 @@ const DateInput = ({value}) => {
     function handleSelect(newDate) {
         setDate(newDate);
         setDropped(false);
+        onSelect(name, newDate);
     }
 
     const caption = format(date, 'EEEE, dd MMMM');

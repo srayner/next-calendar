@@ -3,7 +3,7 @@
 import WeekDays from '../../../../components/week-days/WeekDays';
 import styles from './days.module.css';
 import { format } from 'date-fns';
-import { filterEventsByDate } from '../../../../data/events.js';
+import { filterEventsByDate } from '@/src/local-storage';
 import { populateHours } from '@/src/events';
 
 const DayPage = (props) => {
