@@ -56,11 +56,12 @@ const WeekPage = (props) => {
                     <div className={styles.row} key={index}>
                         <div className={styles.hour}>{hour.name}</div>
                         <div className={styles.hourLine}></div>
-                        {days.map((day) => (
-                            <div className={styles.hourContainer}>
-                                {hour[format(day, 'ddd')].events.map((event) => (
+                        {days.map((day, index) => (
+                            <div key={index} className={styles.hourContainer}>
+                                {hour[format(day, 'ddd')].events.map((event, index) => (
                                     <div
-                                        class={styles.event}
+                                        key={index}
+                                        className={styles.event}
                                         style={{
                                             height: event.position.height,
                                             top: event.position.top,
