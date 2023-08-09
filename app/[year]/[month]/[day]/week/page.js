@@ -4,17 +4,17 @@ import WeekDays from '../../../../components/week-days/WeekDays';
 import { useRouter } from 'next/navigation';
 import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 import { filterEventsByDate } from '@/src/local-storage';
-import styles from './page.module.css';
 import { populateHours } from '@/src/events';
+import styles from './page.module.css';
 
-const WeekPage = (props) => {
+const WeekPage = ({params}) => {
 
-    const { year, month, day } = props.params;
+    const { year, month, day } = params;
     const currentDate = new Date(year, month - 1, day);
     
     const router = useRouter();
 
-    const clickHandler = (day) => {
+    const dayClickHandler = (day) => {
         router.push(format(day, '/yyyy/MM/dd') + '/day');
     }
 
@@ -42,7 +42,7 @@ const WeekPage = (props) => {
 
     return (
         <div className={styles.weekView}>
-            <WeekDays date={currentDate} onClick={clickHandler}/>
+            <WeekDays date={currentDate} onClick={dayClickHandler}/>
             <div className={styles.hours}>
                 <div className={styles.topRow} key="-1">
                     <div className={styles.hour}></div>
