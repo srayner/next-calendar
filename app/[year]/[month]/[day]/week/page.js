@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 import { filterEventsByDate } from '@/src/local-storage';
 import { populateHours } from '@/src/events';
+import { initHours } from '@/src/hours';
 import styles from './page.module.css';
 
 const WeekPage = ({params}) => {
@@ -23,21 +24,11 @@ const WeekPage = ({params}) => {
         end: endOfWeek(currentDate, {weekStartsOn: 1})
     });
 
-    const hours = [];
-    for (let i = 0; i < 24; i++) {
-        const name = i.toString().padStart(2, '0') + ':00'; 
-        let hour = {name: name};
-        days.map((day) => {
-            const dayName = format(day, 'ddd');
-            hour[dayName] = {events: []};
-        });
-        hours.push(hour);
-    }
-
+    const hours = initHours(days);
+    
     days.map((day) => {
         const events = filterEventsByDate(day);
-        const dayName = format(day, 'ddd');
-        populateHours(hours, dayName, events);
+        populateHours(hours, day, events);
     });
 
     return (

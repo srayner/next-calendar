@@ -1,5 +1,5 @@
 
-import { differenceInMinutes, getMinutes, startOfDay } from "date-fns";
+import { differenceInMinutes, format, getMinutes, startOfDay } from "date-fns";
 
 function getTextColorForBackground(bgColor) {
 
@@ -59,7 +59,8 @@ export const populateHours = (hours, day, events) => {
         const start = new Date(event.start);
         const end = new Date(event.end);
         const eventHour = start.getHours();
-        hours[eventHour][day].events.push({
+        const dayName = format(day, 'ddd');
+        hours[eventHour][dayName].events.push({
             id: event.id,
             name: event.name,
             position: calculateEventPosition(start, end),

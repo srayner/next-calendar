@@ -1,27 +1,20 @@
 'use client'
 
 import WeekDays from '../../../../components/week-days/WeekDays';
-import styles from './days.module.css';
-import { format } from 'date-fns';
 import { filterEventsByDate } from '@/src/local-storage';
+import { initHours } from '@/src/hours';
 import { populateHours } from '@/src/events';
+import styles from './days.module.css';
 
 const DayPage = (props) => {
 
     const { year, month, day } = props.params;
     const currentDate = new Date(year, month - 1, day);
-    const dayName = format(currentDate, 'ddd');
-
-    const hours = [];
-    for (let i = 0; i < 24; i++) {
-        const name = i.toString().padStart(2, '0') + ':00';
-        let hour = {name: name};
-        hour[dayName] = {events: []};   
-        hours.push(hour);
-    }
-
+    
+    const days = [currentDate];
+    const hours = initHours(days);
     const events = filterEventsByDate(currentDate);
-    populateHours(hours, dayName, events);
+    populateHours(hours, currentDate, events);
     
     return (
         <div className={styles.dayView}>
