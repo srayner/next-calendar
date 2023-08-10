@@ -1,13 +1,14 @@
 'use client'
 
-import WeekDays from '../../../../components/week-days/WeekDays';
+import WeekDays from '@/app/components/week-days/WeekDays';
+import Event from '@/app/components/event/Event';
+import { format } from 'date-fns';
 import { filterEventsByDate } from '@/src/local-storage';
 import { initHours } from '@/src/hours';
 import { populateHours } from '@/src/events';
 import styles from './days.module.css';
 
 const DayPage = (props) => {
-
     const { year, month, day } = props.params;
     const currentDate = new Date(year, month - 1, day);
     
@@ -31,23 +32,8 @@ const DayPage = (props) => {
                         <div className={styles.hour}>{hour.name}</div>
                         <div className={styles.hourLine}></div>
                         <div className={styles.hourContainer}>
-                            {hour[dayName].events.map((event) => (
-                                <div
-                                    class={styles.event}
-                                    style={{
-                                        height: event.position.height,
-                                        top: event.position.top,
-                                        left: event.position.left,
-                                        right: event.position.right,
-                                        paddingTop: event.position.height <= 15 ? 0 : '4px',
-                                        paddingBottom: event.position.height <= 15 ? 0 : '4px',
-                                        color: event.color === 'light' ? 'var(--textLight)' : 'var(--textNeutral)',
-                                        backgroundColor: event.backgroundColor
-
-                                    }}
-                                >
-                                    {event.name}
-                                </div>
+                            {hour[format(currentDate, 'ddd')].events.map((event, index) => (
+                                <Event event={event} key={index}/>
                             ))}
                         </div>
                     </div>
@@ -55,7 +41,7 @@ const DayPage = (props) => {
             </div>
         </div>
     );
-
   }
   
   export default DayPage;
+  

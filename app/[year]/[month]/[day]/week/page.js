@@ -1,6 +1,7 @@
 'use client'
 
-import WeekDays from '../../../../components/week-days/WeekDays';
+import WeekDays from '@/app/components/week-days/WeekDays';
+import Event from '@/app/components/event/Event';
 import { useRouter } from 'next/navigation';
 import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 import { filterEventsByDate } from '@/src/local-storage';
@@ -9,7 +10,6 @@ import { initHours } from '@/src/hours';
 import styles from './page.module.css';
 
 const WeekPage = ({params}) => {
-
     const { year, month, day } = params;
     const currentDate = new Date(year, month - 1, day);
     
@@ -50,23 +50,7 @@ const WeekPage = ({params}) => {
                         {days.map((day, index) => (
                             <div key={index} className={styles.hourContainer}>
                                 {hour[format(day, 'ddd')].events.map((event, index) => (
-                                    <div
-                                        key={index}
-                                        className={styles.event}
-                                        style={{
-                                            height: event.position.height,
-                                            top: event.position.top,
-                                            left: event.position.left,
-                                            right: event.position.right,
-                                            paddingTop: event.position.height <= 15 ? 0 : '4px',
-                                            paddingBottom: event.position.height <= 15 ? 0 : '4px',
-                                            color: event.color === 'light' ? 'var(--textLight)' : 'var(--textNeutral)',
-                                            backgroundColor: event.backgroundColor
-
-                                        }}
-                                    >
-                                        {event.name}
-                                    </div>
+                                    <Event event={event} key={index} />
                                 ))}
                             </div>
                         ))}
@@ -75,7 +59,6 @@ const WeekPage = ({params}) => {
             </div>
         </div>
     );
-
   }
   
   export default WeekPage;

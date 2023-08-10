@@ -1,0 +1,10 @@
+.event {
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: .7em;
+    border: none;
+    border-left: 4px solid skyblue;
+    position: absolute;
+    z-index: 10
+}
