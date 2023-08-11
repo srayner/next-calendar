@@ -29,6 +29,9 @@ const EventForm = ({event, saveEvent}) => {
     const endDateText = format(data.end, 'EEEE, dd MMMM');
     const endTimeText = format(data.start, 'hh:mm');
 
+    console.log('render form');
+    console.log(data.start);
+
     return (
         <form className={styles.eventForm} onSubmit={handleSave} autoComplete="off">
             <div className={styles.fieldContainer}>

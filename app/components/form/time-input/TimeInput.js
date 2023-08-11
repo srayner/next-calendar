@@ -4,8 +4,11 @@ import { useState } from 'react';
 
 const TimeInput = ({name, value, onSelect}) => {
 
-    const [date, setDate] = useState(value);
     const [dropped, setDropped] = useState(false);
+
+    console.log('render time input');
+    console.log(name);
+    console.log(value);
 
     function toggleDropped() {
         setDropped(!dropped);
@@ -16,14 +19,13 @@ const TimeInput = ({name, value, onSelect}) => {
     }
 
     function handleSelect(newDate) {
-        setDate(newDate);
         setDropped(false);
         onSelect(name, newDate);
     }
 
-    const caption = format(date, 'HH:mm');
+    const caption = format(value, 'HH:mm');
 
-    const startTime = startOfDay(date);
+    const startTime = startOfDay(value);
     const endTime = addMinutes(startTime, 1425);
     const times = eachMinuteOfInterval(
         {start: startTime, end: endTime},
@@ -42,7 +44,7 @@ const TimeInput = ({name, value, onSelect}) => {
                                 className={styles.listItem}
                                 onClick={e => handleSelect(time)}
                                 ref={(element) => {
-                                    if (isEqual(time, date) && element) {
+                                    if (isEqual(time, value) && element) {
                                       element.scrollIntoView({ behavior: 'instant', block: 'start' });
                                     }
                                 }}

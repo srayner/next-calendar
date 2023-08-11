@@ -5,7 +5,6 @@ import Calendar from '../../calendar/Calendar';
 
 const DateInput = ({name, value, onSelect}) => {
 
-    const [date, setDate] = useState(value);
     const [dropped, setDropped] = useState(false);
 
     function toggleDropped() {
@@ -17,12 +16,11 @@ const DateInput = ({name, value, onSelect}) => {
     }
 
     function handleSelect(newDate) {
-        setDate(newDate);
         setDropped(false);
         onSelect(name, newDate);
     }
 
-    const caption = format(date, 'EEEE, dd MMMM');
+    const caption = format(value, 'EEEE, dd MMMM');
 
     return (
         <button className={styles.container} onBlur={handleBlur} type="button">
