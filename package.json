@@ -13,6 +13,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@prisma/client": "5.2.0",
     "date-fns": "^2.30.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "20.5.4",
     "@types/react": "18.2.21",
+    "prisma": "5.2.0",
     "typescript": "5.1.6"
   }
 }

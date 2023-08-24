@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Events {
+  id     String    @id @default(uuid())
+  type   EventType
+  name   String?
+  start  DateTime
+  end    DateTime
+  colour String
+}
+
+enum EventType {
+  EVENT
+  TASK
+}
