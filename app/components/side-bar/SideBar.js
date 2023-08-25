@@ -42,8 +42,8 @@ const SideBar = () => {
   };
 
   const items = [
-    { caption: "Event", shortcut: "E", value: "event" },
-    { caption: "Task", shortcut: "T", value: "task" },
+    { caption: "Event", shortcut: "E", value: "EVENT" },
+    { caption: "Task", shortcut: "T", value: "TASK" },
   ];
 
   return (

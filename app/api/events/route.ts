@@ -1,9 +1,17 @@
 import prisma from "@/src/prisma";
 import { NextResponse, NextRequest } from "next/server";
-import { Prisma } from "@prisma/client";
 
-export async function GET(request: Request) {
-  const events = await prisma.events.findMany();
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const start = searchParams.get("start") as string;
+  const end = searchParams.get("end") as string;
+
+  const events = await prisma.events.findMany({
+    where: {
+      end: { gt: start },
+      start: { lt: end },
+    },
+  });
 
   return NextResponse.json(events);
 }

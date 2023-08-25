@@ -1,47 +1,55 @@
-'use client'
+"use client";
 
-import WeekDays from '@/app/components/week-days/WeekDays';
-import Event from '@/app/components/event/Event';
-import { format } from 'date-fns';
-import { filterEventsByDate } from '@/src/local-storage';
-import { initHours } from '@/src/hours';
-import { populateHours } from '@/src/events';
-import styles from './days.module.css';
+import WeekDays from "@/app/components/week-days/WeekDays";
+import Event from "@/app/components/event/Event";
+import { format } from "date-fns";
+import { initHours } from "@/src/hours";
+import { populateHours } from "@/src/events";
+import { getEventsForDay } from "@/src/api";
+import styles from "./days.module.css";
+import { useEffect, useState } from "react";
 
 const DayPage = (props) => {
-    const { year, month, day } = props.params;
-    const currentDate = new Date(year, month - 1, day);
-    
-    const days = [currentDate];
-    const hours = initHours(days);
-    const events = filterEventsByDate(currentDate);
-    populateHours(hours, currentDate, events);
-    
-    return (
-        <div className={styles.dayView}>
-            <WeekDays date={currentDate} singleDay/>
-            <div className={styles.hours}>
-                <div className={styles.topRow} key="-1">
-                    <div className={styles.hour}></div>
-                    <div className={styles.hourLine}></div>
-                    <div className={styles.hourContainer}></div>
-                </div>
+  const { year, month, day } = props.params;
+  const currentDate = new Date(year, month - 1, day);
 
-                {hours.map((hour, index) => (
-                    <div className={styles.row} key={index}>
-                        <div className={styles.hour}>{hour.name}</div>
-                        <div className={styles.hourLine}></div>
-                        <div className={styles.hourContainer}>
-                            {hour[format(currentDate, 'ddd')].events.map((event, index) => (
-                                <Event event={event} key={index}/>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    getEventsForDay(currentDate).then((eventsFromServer) => {
+      setEvents(eventsFromServer);
+    });
+  }, []);
+
+  const days = [currentDate];
+  const hours = initHours(days);
+
+  populateHours(hours, currentDate, events);
+
+  return (
+    <div className={styles.dayView}>
+      <WeekDays date={currentDate} singleDay />
+      <div className={styles.hours}>
+        <div className={styles.topRow} key="-1">
+          <div className={styles.hour}></div>
+          <div className={styles.hourLine}></div>
+          <div className={styles.hourContainer}></div>
         </div>
-    );
-  }
-  
-  export default DayPage;
-  
+
+        {hours.map((hour, index) => (
+          <div className={styles.row} key={index}>
+            <div className={styles.hour}>{hour.name}</div>
+            <div className={styles.hourLine}></div>
+            <div className={styles.hourContainer}>
+              {hour[format(currentDate, "ddd")].events.map((event, index) => (
+                <Event event={event} key={index} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default DayPage;
