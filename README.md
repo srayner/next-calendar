@@ -21,7 +21,7 @@ cd next-calendar
 Finally install the dependencies
 
 ```bash
-npm install
+yarn install
 ```
 
 Create environment file
@@ -32,12 +32,23 @@ cp .env.dist .env
 
 You will need to have a postgres database server, and you should edit this .env file to contain the url to your database.
 
-## Getting Started
+## Getting Started for development
 
 First, run the development server:
 
 ```bash
-npm run dev
+yarn dev
+```
+
+Then navigate to [http://localhost:3000](http://localhost:3000) with your browser..
+
+## Create a production build
+
+Buid and start your production server:
+
+```bash
+yarn build
+yarn start
 ```
 
 Then navigate to [http://localhost:3000](http://localhost:3000) with your browser..
