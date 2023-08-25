@@ -24,6 +24,14 @@ Finally install the dependencies
 npm install
 ```
 
+Create environment file
+
+```bash
+cp .env.dist .env
+```
+
+You will need to have a postgres database server, and you should edit this .env file to contain the url to your database.
+
 ## Getting Started
 
 First, run the development server:
