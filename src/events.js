@@ -56,17 +56,15 @@ function calculateEventPosition(start, end) {
  */
 export const populateHours = (hours, day, events) => {
   events.forEach((event) => {
-    const start = new Date(event.start);
-    const end = new Date(event.end);
-    const eventHour = start.getHours();
+    const eventHour = event.start.getHours();
     const dayName = format(day, "ddd");
     hours[eventHour][dayName].events.push({
-      id: event.id,
       name: event.name,
-      position: calculateEventPosition(start, end),
+      data: event,
+      position: calculateEventPosition(event.start, event.end),
       backgroundColor: event.colour,
       color: getTextColorForBackground(event.colour),
-      duration: differenceInMinutes(end, start),
+      duration: differenceInMinutes(event.end, event.start),
     });
   });
 };

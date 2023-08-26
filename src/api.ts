@@ -9,7 +9,7 @@ export const getEventsForDay = async (day: Date) => {
     },
   });
 
-  return response.data;
+  return convertEvents(response.data);
 };
 
 export const getEventsForWeek = async (day: Date) => {
@@ -20,13 +20,37 @@ export const getEventsForWeek = async (day: Date) => {
     },
   });
 
-  return response.data;
+  return convertEvents(response.data);
 };
 
-export const createEvent = async (event) => {
+export const createEvent = async (event, onCreated) => {
   const response = await axios.post("/api/events", {
     ...event,
   });
 
-  return response.data;
+  if (typeof onCreated === "function") {
+    onCreated(convertEvent(response.data));
+  }
 };
+
+export const updateEvent = async (event, onUpdate) => {
+  const response = await axios.put("/api/events", {
+    ...event,
+  });
+
+  if (typeof onUpdate === "function") {
+    onUpdate(convertEvent(response.data));
+  }
+};
+
+function convertEvents(events) {
+  return events.map((event) => convertEvent(event));
+}
+
+function convertEvent(event) {
+  return {
+    ...event,
+    start: new Date(event.start),
+    end: new Date(event.end),
+  };
+}

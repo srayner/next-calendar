@@ -9,6 +9,8 @@ import { initHours } from "@/src/hours";
 import { getEventsForWeek } from "@/src/api";
 import { useEffect, useState } from "react";
 import { filterEventsByDate } from "@/src/events";
+import { ModalContext } from "@/app/layout";
+import { useContext } from "react";
 import styles from "./page.module.css";
 
 const WeekPage = ({ params }) => {
@@ -16,6 +18,7 @@ const WeekPage = ({ params }) => {
   const currentDate = new Date(year, month - 1, day);
 
   const [events, setEvents] = useState([]);
+  const { openModal } = useContext(ModalContext);
 
   useEffect(() => {
     getEventsForWeek(currentDate).then((eventsFromServer) => {
@@ -27,6 +30,14 @@ const WeekPage = ({ params }) => {
 
   const dayClickHandler = (day) => {
     router.push(format(day, "/yyyy/MM/dd") + "/day");
+  };
+
+  const eventUpdated = (updatedEvent) => {
+    router.push(format(updatedEvent.start, "/yyyy/MM/dd") + "/week");
+  };
+
+  const eventClickHandler = (event) => {
+    openModal(event, eventUpdated);
   };
 
   const days = eachDayOfInterval({
@@ -59,7 +70,11 @@ const WeekPage = ({ params }) => {
             {days.map((day, index) => (
               <div key={index} className={styles.hourContainer}>
                 {hour[format(day, "ddd")].events.map((event, index) => (
-                  <Event event={event} key={index} />
+                  <Event
+                    event={event}
+                    key={index}
+                    onClick={eventClickHandler}
+                  />
                 ))}
               </div>
             ))}

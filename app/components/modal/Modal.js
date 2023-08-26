@@ -4,15 +4,15 @@ import styles from "./modal.module.css";
 import { useContext } from "react";
 import { ModalContext } from "@/app/layout";
 import EventForm from "../event-form/EventForm";
-import { createEvent } from "@/src/api";
+import { createEvent, updateEvent } from "@/src/api";
 
 const Modal = () => {
-  const { isOpen, closeModal, event } = useContext(ModalContext);
+  const { isOpen, closeModal, event, onUpdate } = useContext(ModalContext);
 
   if (!isOpen) return null;
 
   function onSave(data) {
-    createEvent(data);
+    data.id ? updateEvent(data, onUpdate) : createEvent(data);
     closeModal();
   }
 

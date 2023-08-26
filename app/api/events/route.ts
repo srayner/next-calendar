@@ -23,6 +23,16 @@ export async function POST(request: NextRequest) {
   return NextResponse.json(createdEvent, { status: 200 });
 }
 
+export async function PUT(request: NextRequest) {
+  const data = await request.json();
+  const updatedEvent = await prisma.events.update({
+    where: { id: data.id },
+    data: data,
+  });
+
+  return NextResponse.json(updatedEvent, { status: 200 });
+}
+
 export async function DELETE(request: NextRequest) {
   const data = await request.json();
   const deletedEvent = await prisma.events.deleteMany({
