@@ -33,7 +33,11 @@ const WeekPage = ({ params }) => {
   };
 
   const eventUpdated = (updatedEvent) => {
-    router.push(format(updatedEvent.start, "/yyyy/MM/dd") + "/week");
+    setEvents((prevEvents) =>
+      prevEvents.map((event) =>
+        event.id === updatedEvent.id ? updatedEvent : event
+      )
+    );
   };
 
   const eventClickHandler = (event) => {
