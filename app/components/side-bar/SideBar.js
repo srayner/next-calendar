@@ -2,19 +2,23 @@
 
 import Calendar from "../calendar/Calendar";
 import styles from "./side-bar.module.css";
-import { useSelectedLayoutSegments } from "next/navigation";
+import { useParams, useSelectedLayoutSegments } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { addHours, format, roundToNearestMinutes, startOfDay } from "date-fns";
 import DropDown from "../drop-down/DropDown";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { ModalContext } from "@/app/layout";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const SideBar = () => {
   const router = useRouter();
+  const { year, month, day } = useParams();
   const { openModal } = useContext(ModalContext);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const now = new Date();
+  useEffect(() => {
+    setSelectedDate(new Date(year, month - 1, day));
+  }, [year, month, day]);
 
   const segments = useSelectedLayoutSegments();
   const viewName = segments[segments.length - 1];
@@ -56,7 +60,12 @@ const SideBar = () => {
         menuAligned="left"
         onSelected={(data) => handleCreate(data)}
       />
-      <Calendar startingMonth={now} onSelect={handleDateChange} showNav />
+      <Calendar
+        date={selectedDate}
+        onSelect={handleDateChange}
+        showNav
+        showSelected
+      />
     </div>
   );
 };

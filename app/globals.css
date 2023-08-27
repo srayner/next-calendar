@@ -3,12 +3,14 @@
   --backgroundNeutralHover: #ddd;
   --backgroundPrimary: #00e;
   --backgroundPrimaryHover: #33f;
+  --backgroundSelected: #d2e3fc;
+  --backgroundSelectedHover: #b6d2fb;
   --textNeutral: #444;
   --textMuted: #bbb;
   --textLight: #fff;
 
   --hue: 220;
-  --size: .9rem;
+  --size: 0.9rem;
   --transitionSpeed: 300ms;
 
   /* light */
@@ -43,13 +45,14 @@
   }
 }
 
-@media (prefers-reduced-motion : reduce) {
+@media (prefers-reduced-motion: reduce) {
   :root {
     --transitionSpeed: 100ms;
   }
 }
 
-html, body {
+html,
+body {
   max-width: 100vw;
   overflow-x: hidden;
 }

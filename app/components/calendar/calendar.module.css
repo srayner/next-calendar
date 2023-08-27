@@ -1,92 +1,105 @@
 .calendar {
-    width: 182px;
-    height: 207px;
-    padding: 0;
-    font-weight: 500;
+  width: 182px;
+  height: 207px;
+  padding: 0;
+  font-weight: 500;
 }
 
 .title {
-    display: flex;
-    font-family: inherit;
-    font-size: 14px;
-    text-align: left;
-    user-select: none;
-    margin-bottom: 5px;
+  display: flex;
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+  user-select: none;
+  margin-bottom: 5px;
 }
 
 .monthName {
-    flex: 1;
-    padding: 5px;
+  flex: 1;
+  padding: 5px;
 }
 
 .button {
-    flex: 0 0 16px;
-    height: 17px;
-    width: 17px;
-    padding: 5px;
-    cursor: pointer;
+  flex: 0 0 16px;
+  height: 17px;
+  width: 17px;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .weekdayGrid {
-    display: grid;
-    grid-template-columns: repeat(7, 26px);
-    gap: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 26px);
+  gap: 0;
 }
 
 .dayGrid {
-    display: grid;
-    grid-template-columns: repeat(7, 26px);
-    grid-template-rows: repeat(7, 26px);
-    gap: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 26px);
+  grid-template-rows: repeat(7, 26px);
+  gap: 0;
 }
 
-.dayContainer, .weekdayContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.dayContainer,
+.weekdayContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.day, .weekDay {
-    width: 22px;
-    height:22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1px;
-    grid-column: span 1;
-    font-size: 12px;
-    color: var(--textMuted);
-    user-select: none;
+.day,
+.weekDay {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px;
+  grid-column: span 1;
+  font-size: 12px;
+  color: var(--textMuted);
+  user-select: none;
 }
 
 .day {
-    border-radius: 50%;
-    transition: background-color 0.25s ease;
+  border-radius: 50%;
+  transition: background-color 0.25s ease;
 }
 
 .weekDay {
-    color: var(--textNeutral);
+  color: var(--textNeutral);
 }
 
 .day.currentMonth {
-    color: var(--textNeutral);
+  color: var(--textNeutral);
+}
+
+.day.currentMonth.selected {
+  background-color: var(--backgroundSelected);
+  border-radius: 50%;
+  color: var(--backNeutral);
 }
 
 .day.currentMonth.today {
-    background-color: var(--backgroundPrimary);
-    border-radius: 50%;
-    color: var(--backgroundNeutral);
+  background-color: var(--backgroundPrimary);
+  border-radius: 50%;
+  color: var(--backgroundNeutral);
 }
 
 .dayContainer:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .dayContainer:hover .day {
-    background-color: var(--backgroundNeutralHover);
+  background-color: var(--backgroundNeutralHover);
+}
+
+.dayContainer:hover .day.currentMonth.selected {
+  background-color: var(--backgroundSelectedHover);
+  border-radius: 50%;
 }
 
 .dayContainer:hover .day.currentMonth.today {
-    background-color: var(--backgroundPrimaryHover);
-    border-radius: 50%;
+  background-color: var(--backgroundPrimaryHover);
+  border-radius: 50%;
 }
