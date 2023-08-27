@@ -16,7 +16,10 @@ const Event = ({ event, onClick }) => {
     <div
       className={styles.event}
       style={style}
-      onClick={() => onClick(event.data)}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick(event.data);
+      }}
     >
       {event.name}
     </div>

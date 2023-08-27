@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { filterEventsByDate } from "@/src/events";
 import { ModalContext } from "@/app/layout";
 import { useContext } from "react";
+import HourContainer from "@/app/components/hour-container/HourContainer";
 import styles from "./page.module.css";
 
 const WeekPage = ({ params }) => {
@@ -33,14 +34,24 @@ const WeekPage = ({ params }) => {
   };
 
   const eventUpdated = (updatedEvent) => {
-    setEvents((prevEvents) =>
-      prevEvents.map((event) =>
-        event.id === updatedEvent.id ? updatedEvent : event
-      )
-    );
+    setEvents((prevEvents) => {
+      const existingIndex = prevEvents.findIndex(
+        (event) => event.id === updatedEvent.id
+      );
+
+      if (existingIndex === -1) {
+        return [...prevEvents, updatedEvent];
+      }
+
+      return [
+        ...prevEvents.slice(0, existingIndex),
+        updatedEvent,
+        ...prevEvents.slice(existingIndex + 1),
+      ];
+    });
   };
 
-  const eventClickHandler = (event) => {
+  const editEvent = (event) => {
     openModal(event, eventUpdated);
   };
 
@@ -72,15 +83,16 @@ const WeekPage = ({ params }) => {
             <div className={styles.hour}>{hour.name}</div>
             <div className={styles.hourLine}></div>
             {days.map((day, index) => (
-              <div key={index} className={styles.hourContainer}>
-                {hour[format(day, "ddd")].events.map((event, index) => (
-                  <Event
-                    event={event}
-                    key={index}
-                    onClick={eventClickHandler}
-                  />
+              <HourContainer
+                key={index}
+                name={hour.name}
+                day={day}
+                onClick={editEvent}
+              >
+                {hour[format(day, "EEE")].events.map((event, index) => (
+                  <Event event={event} key={index} onClick={editEvent} />
                 ))}
-              </div>
+              </HourContainer>
             ))}
           </div>
         ))}

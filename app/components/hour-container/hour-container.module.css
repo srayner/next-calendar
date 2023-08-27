@@ -1,0 +1,9 @@
+.hourContainer {
+  box-sizing: border-box;
+  height: var(--hourRowHeight);
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-right: none;
+  flex: 1;
+  position: relative;
+}

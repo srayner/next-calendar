@@ -12,7 +12,7 @@ const Modal = () => {
   if (!isOpen) return null;
 
   function onSave(data) {
-    data.id ? updateEvent(data, onUpdate) : createEvent(data);
+    data.id ? updateEvent(data, onUpdate) : createEvent(data, onUpdate);
     closeModal();
   }
 

@@ -41,7 +41,7 @@ const DayPage = (props) => {
             <div className={styles.hour}>{hour.name}</div>
             <div className={styles.hourLine}></div>
             <div className={styles.hourContainer}>
-              {hour[format(currentDate, "ddd")].events.map((event, index) => (
+              {hour[format(currentDate, "EEE")].events.map((event, index) => (
                 <Event event={event} key={index} />
               ))}
             </div>
