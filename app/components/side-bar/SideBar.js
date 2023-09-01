@@ -17,7 +17,9 @@ const SideBar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
-    setSelectedDate(new Date(year, month - 1, day));
+    if (year && month && day) {
+      setSelectedDate(new Date(year, month - 1, day));
+    }
   }, [year, month, day]);
 
   const segments = useSelectedLayoutSegments();
