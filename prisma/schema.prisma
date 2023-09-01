@@ -13,7 +13,7 @@ model Events {
   name   String?
   start  DateTime
   end    DateTime
-  colour String
+  colour String    @db.Char(7)
 }
 
 enum EventType {
