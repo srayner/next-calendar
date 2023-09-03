@@ -1,6 +1,6 @@
 import styles from "./event.module.css";
 
-const Event = ({ event, onClick }) => {
+const Event = ({ event, onClick, draggable, onDragStart }) => {
   const style = {
     height: event.position.height,
     top: event.position.top,
@@ -20,6 +20,8 @@ const Event = ({ event, onClick }) => {
         e.stopPropagation();
         onClick(event.data);
       }}
+      draggable={draggable}
+      onDragStart={(e) => onDragStart(e, event.data.id)}
     >
       {event.name}
     </div>

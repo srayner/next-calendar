@@ -1,4 +1,10 @@
-import { differenceInMinutes, format, getMinutes, startOfDay } from "date-fns";
+import {
+  addMinutes,
+  differenceInMinutes,
+  format,
+  getMinutes,
+  startOfDay,
+} from "date-fns";
 
 function getTextColorForBackground(bgColor) {
   const hexToRgb = (hex) => {
@@ -86,4 +92,14 @@ export function filterEventsByDate(date, events) {
   });
 
   return filteredEvents;
+}
+
+export function moveEvent(event, newStart) {
+  const duration = differenceInMinutes(event.end, event.start);
+
+  return {
+    ...event,
+    start: newStart,
+    end: addMinutes(newStart, duration),
+  };
 }

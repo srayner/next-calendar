@@ -1,7 +1,14 @@
 import { addHours, setHours, setMinutes } from "date-fns";
 import styles from "./hour-container.module.css";
 
-const HourContainer = ({ name, day, children, onClick }) => {
+const HourContainer = ({
+  name,
+  day,
+  children,
+  onClick,
+  onDrop,
+  onDragOver,
+}) => {
   const [hours, minutes] = name.split(":").map(Number);
   const start = setMinutes(setHours(day, hours), minutes);
 
@@ -18,7 +25,12 @@ const HourContainer = ({ name, day, children, onClick }) => {
   };
 
   return (
-    <div className={styles.hourContainer} onClick={() => newEvent()}>
+    <div
+      className={styles.hourContainer}
+      onClick={() => newEvent()}
+      onDrop={(e) => onDrop(e, name, day)}
+      onDragOver={onDragOver}
+    >
       {children}
     </div>
   );

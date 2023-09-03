@@ -4,7 +4,7 @@ import WeekDays from "@/app/components/week-days/WeekDays";
 import Event from "@/app/components/event/Event";
 import { useRouter } from "next/navigation";
 import { eachDayOfInterval, endOfWeek, format, startOfWeek } from "date-fns";
-import { populateHours } from "@/src/events";
+import { moveEvent, populateHours } from "@/src/events";
 import { initHours } from "@/src/hours";
 import { getEventsForWeek } from "@/src/api";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import { filterEventsByDate } from "@/src/events";
 import { ModalContext } from "@/app/layout";
 import { useContext } from "react";
 import HourContainer from "@/app/components/hour-container/HourContainer";
+import { updateEvent } from "@/src/api";
 import styles from "./page.module.css";
 
 const WeekPage = ({ params }) => {
@@ -66,6 +67,28 @@ const WeekPage = ({ params }) => {
     populateHours(hours, day, filterEventsByDate(day, events));
   });
 
+  function handleOnDrag(e, event) {
+    e.dataTransfer.setData("text/plain", event);
+  }
+
+  function handleDragOver(e) {
+    e.preventDefault();
+  }
+
+  function handleOnDrop(e, hourName, day) {
+    const eventId = e.dataTransfer.getData("text/plain");
+    const event = events.find((event) => event.id === eventId);
+
+    // we need to combine the day and the hours.
+    // It would be good to refactor so that we get a Date object that has the time set correctly.
+    const [newHours, newMinutes] = hourName.split(":").map(Number);
+    const newStart = new Date(day);
+    newStart.setHours(newHours);
+    newStart.setMinutes(newMinutes);
+    const updatedEvent = moveEvent(event, newStart);
+    updateEvent(updatedEvent, eventUpdated);
+  }
+
   return (
     <div className={styles.weekView}>
       <WeekDays date={currentDate} onClick={dayClickHandler} />
@@ -88,9 +111,17 @@ const WeekPage = ({ params }) => {
                 name={hour.name}
                 day={day}
                 onClick={editEvent}
+                onDrop={handleOnDrop}
+                onDragOver={handleDragOver}
               >
                 {hour[format(day, "EEE")].events.map((event, index) => (
-                  <Event event={event} key={index} onClick={editEvent} />
+                  <Event
+                    event={event}
+                    key={index}
+                    onClick={editEvent}
+                    draggable
+                    onDragStart={handleOnDrag}
+                  />
                 ))}
               </HourContainer>
             ))}

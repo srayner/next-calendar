@@ -15,8 +15,8 @@ export const getEventsForDay = async (day: Date) => {
 export const getEventsForWeek = async (day: Date) => {
   const response = await axios.get("/api/events", {
     params: {
-      start: startOfWeek(day),
-      end: endOfWeek(day),
+      start: startOfWeek(day, { weekStartsOn: 1 }),
+      end: endOfWeek(day, { weekStartsOn: 1 }),
     },
   });
 
