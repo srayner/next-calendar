@@ -81,7 +81,9 @@ const Calendar = ({ date, onSelect, showNav, showSelected }) => {
           <div
             className={styles.dayContainer}
             key={index}
-            onClick={() => onSelect(day)}
+            onClick={
+              typeof onSelect === "function" ? () => onSelect(day) : null
+            }
           >
             <div
               className={`
