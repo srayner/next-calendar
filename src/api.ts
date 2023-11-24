@@ -1,6 +1,21 @@
 import axios from "axios";
 import { startOfDay, startOfWeek, endOfDay, endOfWeek } from "date-fns";
 
+axios.interceptors.response.use((response) => {
+  function transformEvent(event) {
+    event.start = new Date(event.start);
+    event.end = new Date(event.end);
+  }
+
+  if (Array.isArray(response.data)) {
+    response.data.map(transformEvent);
+  } else if (typeof response.data === "object") {
+    transformEvent(response.data);
+  }
+
+  return response;
+});
+
 export const getEventsForDay = async (day: Date) => {
   const response = await axios.get("/api/events", {
     params: {
@@ -9,7 +24,7 @@ export const getEventsForDay = async (day: Date) => {
     },
   });
 
-  return convertEvents(response.data);
+  return response.data;
 };
 
 export const getEventsForWeek = async (day: Date) => {
@@ -20,7 +35,7 @@ export const getEventsForWeek = async (day: Date) => {
     },
   });
 
-  return convertEvents(response.data);
+  return response.data;
 };
 
 export const createEvent = async (event, onCreated) => {
@@ -29,7 +44,7 @@ export const createEvent = async (event, onCreated) => {
   });
 
   if (typeof onCreated === "function") {
-    onCreated(convertEvent(response.data));
+    onCreated(response.data);
   }
 };
 
@@ -39,18 +54,6 @@ export const updateEvent = async (event, onUpdate) => {
   });
 
   if (typeof onUpdate === "function") {
-    onUpdate(convertEvent(response.data));
+    onUpdate(response.data);
   }
 };
-
-function convertEvents(events) {
-  return events.map((event) => convertEvent(event));
-}
-
-function convertEvent(event) {
-  return {
-    ...event,
-    start: new Date(event.start),
-    end: new Date(event.end),
-  };
-}
